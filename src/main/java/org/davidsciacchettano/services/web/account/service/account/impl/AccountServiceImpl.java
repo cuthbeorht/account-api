@@ -17,7 +17,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     public AccountServiceImpl(AccountRepository accountRepository) {
-        accountRepository = accountRepository;
+        this.accountRepository = accountRepository;
     }
 
     @Override

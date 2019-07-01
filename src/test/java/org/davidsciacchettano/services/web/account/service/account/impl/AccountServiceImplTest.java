@@ -1,24 +1,27 @@
 package org.davidsciacchettano.services.web.account.service.account.impl;
 
+import org.assertj.core.api.Assert;
 import org.davidsciacchettano.services.web.account.data.AccountData;
+import org.davidsciacchettano.services.web.account.exception.NotFoundException;
 import org.davidsciacchettano.services.web.account.model.Account;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(SpringExtension.class)
 public class AccountServiceImplTest {
 
-    @InjectMocks
     private AccountServiceImpl accountService;
 
     @Mock
@@ -53,6 +56,13 @@ public class AccountServiceImplTest {
         List<Account> actualAccounts = accountService.findByPage(PageRequest.of(0, 10));
 
         assertEquals(expectedAccounts, actualAccounts);
+    }
+
+    @Test
+    public void findById_sendNullId_expectNotFoundException() {
+        assertThrows(NotFoundException.class, () -> {
+            accountService.findById(null);
+        });
     }
 
 }
