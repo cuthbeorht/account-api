@@ -1,4 +1,4 @@
-package org.davidsciacchettano.services.web.account.service.account;
+package org.davidsciacchettano.services.web.account.service;
 
 import org.davidsciacchettano.services.web.account.model.Account;
 

@@ -3,7 +3,7 @@ package org.davidsciacchettano.services.web.account.service.impl;
 import org.davidsciacchettano.services.web.account.exception.NotFoundException;
 import org.davidsciacchettano.services.web.account.model.Account;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
-import org.davidsciacchettano.services.web.account.service.account.AccountService;
+import org.davidsciacchettano.services.web.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -4,15 +4,12 @@ import org.davidsciacchettano.services.web.account.adapter.AccountAdapter;
 import org.davidsciacchettano.services.web.account.dto.AccountDto;
 import org.davidsciacchettano.services.web.account.exception.NotFoundException;
 import org.davidsciacchettano.services.web.account.mapper.account.AccountMapper;
-import org.davidsciacchettano.services.web.account.model.Account;
-import org.davidsciacchettano.services.web.account.service.account.AccountService;
+import org.davidsciacchettano.services.web.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class AccountAdapterImpl implements AccountAdapter {
