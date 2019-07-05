@@ -5,10 +5,13 @@ import org.davidsciacchettano.services.web.account.model.Account;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
 import org.davidsciacchettano.services.web.account.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -20,10 +23,10 @@ public class AccountServiceImpl implements AccountService {
         this.accountRepository = accountRepository;
     }
 
-    @Override
-    public List<Account> findByPage(Pageable page) {
-        return accountRepository.findByPage(page);
-    }
+//    @Override
+//    public List<Account> search(Account account) {
+//        return accountRepository.findByExample(Example.of(account));
+//    }
 
     @Override
     public Account findById(Long id) {
@@ -42,7 +45,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account patch(Account source, Account dest) {
+    public Account patch(Account source) {
         return null;
+    }
+
+    @Override
+    public Account create(Account account) {
+        return accountRepository.save(account);
     }
 }
