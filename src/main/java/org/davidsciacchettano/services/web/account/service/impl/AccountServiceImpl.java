@@ -1,17 +1,11 @@
-package org.davidsciacchettano.services.web.account.service.account.impl;
+package org.davidsciacchettano.services.web.account.service.impl;
 
 import org.davidsciacchettano.services.web.account.exception.NotFoundException;
 import org.davidsciacchettano.services.web.account.model.Account;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
 import org.davidsciacchettano.services.web.account.service.account.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService {
