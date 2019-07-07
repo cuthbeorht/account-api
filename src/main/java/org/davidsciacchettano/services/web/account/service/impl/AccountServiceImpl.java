@@ -5,7 +5,10 @@ import org.davidsciacchettano.services.web.account.model.Account;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
 import org.davidsciacchettano.services.web.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -17,10 +20,10 @@ public class AccountServiceImpl implements AccountService {
         this.accountRepository = accountRepository;
     }
 
-//    @Override
-//    public List<Account> search(Account account) {
-//        return accountRepository.findByExample(Example.of(account));
-//    }
+    @Override
+    public List<Account> search(Account account) {
+        return accountRepository.findAll(Example.of(account));
+    }
 
     @Override
     public Account findById(Long id) {

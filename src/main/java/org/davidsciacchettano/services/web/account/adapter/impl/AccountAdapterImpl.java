@@ -8,8 +8,12 @@ import org.davidsciacchettano.services.web.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class AccountAdapterImpl implements AccountAdapter {
@@ -35,7 +39,9 @@ public class AccountAdapterImpl implements AccountAdapter {
     }
 
     @Override
-    public AccountDto create(AccountDto accountDto) throws Exception {
+    public AccountDto create(@RequestParam AccountDto accountDto) throws Exception {
+        Assert.notNull(accountDto, "The AccountDto parameter is mandatory.");
+
         return accountMapper.tryMapToEntity(accountDto)
                 .map(accountService::create)
                 .map(accountMapper::mapToDto)
@@ -45,5 +51,24 @@ public class AccountAdapterImpl implements AccountAdapter {
     @Override
     public AccountDto update(AccountDto accountDto) {
         return null;
+    }
+
+    @Override
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public List<AccountDto> search(AccountDto accountDto) {
+
+        Assert.notNull(accountDto, "The AccountDTO parameter cannot be null.");
+
+        return accountMapper.tryMapToEntity(accountDto)
+                .map(accountService::search)
+                .stream()
+                .flatMap(List::stream)
+                .map(account -> accountMapper.mapToDto(account))
+                .collect(Collectors.toList());
+
     }
 }
