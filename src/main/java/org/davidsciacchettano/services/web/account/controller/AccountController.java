@@ -19,9 +19,8 @@ public class AccountController {
     }
 
     @PostMapping("/search")
-    public List<AccountDto> search(AccountDto accountDto) {
-//        return accountAdapter.findByPage(page);
-        return null;
+    public List<AccountDto> search(@RequestBody AccountDto accountDto) {
+        return accountAdapter.search(accountDto);
     }
 
     @GetMapping("/{id}")
@@ -31,7 +30,7 @@ public class AccountController {
     }
 
     @PostMapping
-    public AccountDto create(AccountDto accountDto) throws Exception {
+    public AccountDto create(@RequestBody AccountDto accountDto) throws Exception {
         return accountAdapter.create(accountDto);
     }
 }

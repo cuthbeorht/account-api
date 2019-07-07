@@ -2,6 +2,7 @@ package org.davidsciacchettano.services.web.account.service.account.impl;
 
 import org.davidsciacchettano.services.web.account.exception.NotFoundException;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
+import org.davidsciacchettano.services.web.account.service.impl.AccountServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,9 +26,7 @@ public class AccountServiceImplTest {
 
     @Test
     public void findById_sendNullId_expectNotFoundException() {
-        assertThrows(NotFoundException.class, () -> {
-            accountService.findById(null);
-        });
+        assertThrows(NotFoundException.class, () -> accountService.findById(null));
     }
 
 }
