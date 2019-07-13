@@ -33,4 +33,9 @@ public class AccountController {
     public AccountDto create(@RequestBody AccountDto accountDto) throws Exception {
         return accountAdapter.create(accountDto);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") String id) {
+        accountAdapter.delete(Long.parseLong(id));
+    }
 }

@@ -55,7 +55,7 @@ public class AccountAdapterImpl implements AccountAdapter {
 
     @Override
     public void delete(Long id) {
-
+        accountService.delete(id);
     }
 
     @Override
