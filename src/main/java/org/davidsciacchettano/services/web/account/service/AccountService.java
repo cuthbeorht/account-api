@@ -17,4 +17,6 @@ public interface AccountService {
     public Account patch(Account source);
 
     public Account create(Account account);
+
+    public List<Account> findAll();
 }

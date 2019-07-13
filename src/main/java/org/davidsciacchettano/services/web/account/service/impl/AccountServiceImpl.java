@@ -50,4 +50,9 @@ public class AccountServiceImpl implements AccountService {
     public Account create(Account account) {
         return accountRepository.save(account);
     }
+
+    @Override
+    public List<Account> findAll() {
+        return accountRepository.findAll();
+    }
 }

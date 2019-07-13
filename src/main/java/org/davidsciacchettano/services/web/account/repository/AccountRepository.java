@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Long> {
     List<Account> findAll(Example<Account> example);
+
+    List<Account> findAll();
 }
