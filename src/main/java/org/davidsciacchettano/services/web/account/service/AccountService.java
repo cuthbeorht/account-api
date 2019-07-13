@@ -18,5 +18,5 @@ public interface AccountService {
 
     public Account create(Account account);
 
-    public List<Account> findAll();
+    public List<Account> findAll(Integer page, Integer size);
 }

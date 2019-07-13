@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AccountAdapter {
 
-    public List<AccountDto> findAll();
+    public List<AccountDto> findAll(Integer page, Integer size);
 
     public AccountDto findById(Long id);
 

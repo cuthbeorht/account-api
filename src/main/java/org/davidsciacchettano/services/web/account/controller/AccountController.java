@@ -39,8 +39,13 @@ public class AccountController {
         accountAdapter.delete(Long.parseLong(id));
     }
 
+    @GetMapping(params = {"page", "size"})
+    public List<AccountDto> findAllByPage(@RequestParam("page") Integer page, @RequestParam("size") Integer size) {
+        return accountAdapter.findAll(page, size);
+    }
+
     @GetMapping
-    public List<AccountDto> findAll() {
-        return accountAdapter.findAll();
+    public List<AccountDto> findAllByPage() {
+        return accountAdapter.findAll(0, 10);
     }
 }

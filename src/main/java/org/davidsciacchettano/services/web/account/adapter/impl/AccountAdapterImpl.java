@@ -75,8 +75,8 @@ public class AccountAdapterImpl implements AccountAdapter {
     }
 
     @Override
-    public List<AccountDto> findAll() {
-        return accountService.findAll()
+    public List<AccountDto> findAll(Integer page, Integer size) {
+        return accountService.findAll(page, size)
                 .stream()
                 .map(accountMapper::mapToDto)
                 .collect(Collectors.toList());
