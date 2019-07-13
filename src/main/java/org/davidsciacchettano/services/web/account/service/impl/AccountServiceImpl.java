@@ -6,9 +6,11 @@ import org.davidsciacchettano.services.web.account.repository.AccountRepository;
 import org.davidsciacchettano.services.web.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -52,7 +54,10 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> findAll() {
-        return accountRepository.findAll();
+    public List<Account> findAll(Integer page, Integer size) {
+
+        return accountRepository.findAll(PageRequest.of(page, size))
+                .stream()
+                .collect(Collectors.toList());
     }
 }
