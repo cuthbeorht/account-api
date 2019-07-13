@@ -5,6 +5,9 @@ import org.davidsciacchettano.services.web.account.dto.AccountDto;
 import java.util.List;
 
 public interface AccountAdapter {
+
+    public List<AccountDto> findAll();
+
     public AccountDto findById(Long id);
 
     public List<AccountDto> search(AccountDto accountDto);

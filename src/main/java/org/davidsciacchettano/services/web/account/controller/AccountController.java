@@ -38,4 +38,9 @@ public class AccountController {
     public void delete(@PathVariable("id") String id) {
         accountAdapter.delete(Long.parseLong(id));
     }
+
+    @GetMapping
+    public List<AccountDto> findAll() {
+        return accountAdapter.findAll();
+    }
 }

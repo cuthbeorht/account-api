@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,7 +29,7 @@ public class AccountAdapterImpl implements AccountAdapter {
 
     @Override
     public AccountDto findById(Long id) {
-        Assert.notNull(id, "Id cannot be null");
+        Assert.notNull(id, "The parameter id is mandatory.");
 
 
         return Optional.of(accountService.findById(id))
@@ -55,6 +54,9 @@ public class AccountAdapterImpl implements AccountAdapter {
 
     @Override
     public void delete(Long id) {
+
+        Assert.notNull(id, "The parameter id is mandatory.");
+
         accountService.delete(id);
     }
 
@@ -70,5 +72,13 @@ public class AccountAdapterImpl implements AccountAdapter {
                 .map(account -> accountMapper.mapToDto(account))
                 .collect(Collectors.toList());
 
+    }
+
+    @Override
+    public List<AccountDto> findAll() {
+        return accountService.findAll()
+                .stream()
+                .map(accountMapper::mapToDto)
+                .collect(Collectors.toList());
     }
 }
