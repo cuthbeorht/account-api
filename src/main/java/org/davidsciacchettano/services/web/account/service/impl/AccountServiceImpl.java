@@ -1,5 +1,6 @@
 package org.davidsciacchettano.services.web.account.service.impl;
 
+import org.davidsciacchettano.services.web.account.config.BCryptPasswordEncoderComponent;
 import org.davidsciacchettano.services.web.account.exception.NotFoundException;
 import org.davidsciacchettano.services.web.account.model.Account;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
@@ -7,6 +8,7 @@ import org.davidsciacchettano.services.web.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,10 +18,12 @@ import java.util.stream.Collectors;
 public class AccountServiceImpl implements AccountService {
 
     private AccountRepository accountRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AccountServiceImpl(AccountRepository accountRepository) {
+    public AccountServiceImpl(AccountRepository accountRepository, PasswordEncoder passwordEncoder) {
         this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -50,6 +54,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account create(Account account) {
+
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
+
         return accountRepository.save(account);
     }
 
