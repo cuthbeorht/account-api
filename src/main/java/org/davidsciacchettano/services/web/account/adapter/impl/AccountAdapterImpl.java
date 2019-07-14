@@ -81,4 +81,12 @@ public class AccountAdapterImpl implements AccountAdapter {
                 .map(accountMapper::mapToDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public AccountDto authenticate(AccountDto accountDto) {
+        return accountMapper.tryMapToEntity(accountDto)
+                .map(a -> accountService.authenticate(a.getUsername(), a.getPassword()))
+                .map(accountMapper::mapToDto)
+                .orElseThrow(NotFoundException::new);
+    }
 }

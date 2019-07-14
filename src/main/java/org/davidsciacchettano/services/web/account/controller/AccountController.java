@@ -48,4 +48,6 @@ public class AccountController {
     public List<AccountDto> findAllByPage() {
         return accountAdapter.findAll(0, 10);
     }
+
+
 }

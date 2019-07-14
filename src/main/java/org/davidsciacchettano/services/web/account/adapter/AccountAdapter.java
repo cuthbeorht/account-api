@@ -17,4 +17,6 @@ public interface AccountAdapter {
     public AccountDto update(AccountDto accountDto);
 
     public void delete(Long id);
+
+    public AccountDto authenticate(AccountDto accountDto);
 }

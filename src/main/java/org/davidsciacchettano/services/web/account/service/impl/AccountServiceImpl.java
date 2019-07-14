@@ -1,6 +1,5 @@
 package org.davidsciacchettano.services.web.account.service.impl;
 
-import org.davidsciacchettano.services.web.account.config.BCryptPasswordEncoderComponent;
 import org.davidsciacchettano.services.web.account.exception.NotFoundException;
 import org.davidsciacchettano.services.web.account.model.Account;
 import org.davidsciacchettano.services.web.account.repository.AccountRepository;
@@ -8,6 +7,7 @@ import org.davidsciacchettano.services.web.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +66,17 @@ public class AccountServiceImpl implements AccountService {
         return accountRepository.findAll(PageRequest.of(page, size))
                 .stream()
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Account authenticate(String username, String password) {
+
+        Account account = accountRepository.findByUsername(username);
+
+        if(!BCrypt.checkpw(password, account.getPassword())) {
+            throw new NotFoundException("Login failed for user " + account.getUsername());
+        }
+
+        return account;
     }
 }
