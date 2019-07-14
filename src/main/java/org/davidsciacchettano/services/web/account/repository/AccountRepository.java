@@ -11,7 +11,10 @@ import java.util.List;
 
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Long> {
-    List<Account> findAll(Example<Account> example);
 
-    Page<Account> findAll(Pageable pageable);
+    public List<Account> findAll(Example<Account> example);
+
+    public Page<Account> findAll(Pageable pageable);
+
+    public Account findByUsername(String username);
 }
